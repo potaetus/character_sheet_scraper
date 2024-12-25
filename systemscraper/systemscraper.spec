@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['systemscraper\\systemscraper.py'],
+    ['systemscraper.py'],
     pathex=[],
     binaries=[],
     datas=[],

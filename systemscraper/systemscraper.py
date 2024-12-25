@@ -200,7 +200,10 @@ for element in elementlist:
     campaign_foldername = f"{campaign}_({campaign_url[0:5]})"
 
 # SAVE CAMPAIGN PICTURE
-imgSource = soup.find("div", {"class":"css-175oi2r r-1c45kls r-4k9ar7 r-1niwhzg r-1h0z5md r-1awozwy r-18u37iz", "style":"flex: 1 1 0%;"}).find("img", {"class":"css-9pa8cd"}).get("src")
+try:
+    imgSource = soup.find("div", {"class":"css-175oi2r r-1c45kls r-4k9ar7 r-1niwhzg r-1h0z5md r-1awozwy r-18u37iz", "style":"flex: 1 1 0%;"}).find("img", {"class":"css-9pa8cd"}).get("src")
+except Exception:
+    print("[LOG]: This campaign has no picture")
 pollImageDownload(imgSource, "mRPG_Archive\\"+campaign_foldername)
 
 # SAVE SHEET JSON
