@@ -128,12 +128,12 @@ def newlineWithIndent(level):
 
 
 # COPY SHEET TEMPLATE
-driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[2]").click()
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[2]")))).click()
 sleep(1)
 sheetStr = "{" + newlineWithIndent(1)
 
 i = 0
-elementlist = driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div[2]/div")
+elementlist = WebDriverWait(driver, 10).until(EC.element_to_be_selected((driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div[2]/div"))))
 elementlist = elementlist.find_elements(By.XPATH, "./*")
 elementlist.pop()
 
@@ -176,6 +176,7 @@ for element in elementlist:
             "defaultValue":"",
             "defaultModifier":""
           }
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((curElement)))
         curElement.click()
         curElement = driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div[2]/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div/div")
         fieldOptions = curElement.find_elements(By.CSS_SELECTOR, ".css-175oi2r.r-1c45kls.r-4k9ar7.r-1niwhzg.r-jw8lkh")
@@ -191,7 +192,7 @@ for element in elementlist:
             except Exception:
                 pass
             j = j + 1
-        driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div[2]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[1]/div/div").click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div[2]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[1]/div/div")))).click()
         sheetStr = appendSectionFieldJSONObject(sheetStr, fieldInfoDict, isNextElementASection)
 
     if i == len(elementlist) - 1:
