@@ -178,7 +178,7 @@ for element in elementlist:
             "defaultModifier":""
           }
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((curElement)))
-        curElement.click()
+        webdriver.ActionChains(driver).move_to_element(element ).click(element ).perform()
         curElement = driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div[2]/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div/div")
         fieldOptions = curElement.find_elements(By.CSS_SELECTOR, ".css-175oi2r.r-1c45kls.r-4k9ar7.r-1niwhzg.r-jw8lkh")
         fieldType = driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div[2]/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]").text
@@ -204,13 +204,16 @@ for element in elementlist:
 # SAVE CAMPAIGN PICTURE
 try:
     imgSource = soup.find("div", {"class":"css-175oi2r r-1c45kls r-4k9ar7 r-1niwhzg r-1h0z5md r-1awozwy r-18u37iz", "style":"flex: 1 1 0%;"}).find("img", {"class":"css-9pa8cd"}).get("src")
+    pollImageDownload(imgSource, "mRPG_Archive\\"+campaign_foldername)
 except Exception:
     print("[LOG]: This campaign has no picture")
-pollImageDownload(imgSource, "mRPG_Archive\\"+campaign_foldername)
 
 # SAVE SHEET JSON
 try:
-    filename = "mRPG_Archive\\"+campaign_foldername+"\\system_sheet.json"
+    path = "mRPG_Archive\\"+campaign_foldername
+    if not os.path.exists(path):
+        os.makedirs(path)
+    filename = path + "\\system_sheet.json"
     with open(filename, 'w', encoding='utf-16') as file:
         file.write(sheetStr)
     print(f"File '{filename}' has been created and written successfully.")
