@@ -133,7 +133,8 @@ sleep(1)
 sheetStr = "{" + newlineWithIndent(1)
 
 i = 0
-elementlist = WebDriverWait(driver, 10).until(EC.element_to_be_selected((driver.find_element(By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div[2]/div"))))
+locator = (By.XPATH, "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/div/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div/div/div/div[2]/div")
+elementlist = WebDriverWait(driver, 10).until(EC.presence_of_element_located(locator))
 elementlist = elementlist.find_elements(By.XPATH, "./*")
 elementlist.pop()
 
